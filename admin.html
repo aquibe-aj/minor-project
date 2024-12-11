@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="login.webp">
+    <title>Admin Login</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Admin Login</h1>
+        <p>Enter your credentials to access the Railway Navigation System</p>
+        <form id="adminLoginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+    </div>
+    <!-- Link to external JavaScript -->
+    <script src="admin.js"></script>
+</body>
+</html>

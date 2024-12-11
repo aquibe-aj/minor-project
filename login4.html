@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Railway Station Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: #204060;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background: linear-gradient(45deg, #6b9ac4, #204060);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 90%;
+            padding: 10px 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            align-items: center;
+        }
+
+        .login-container button {
+            width: 50%;
+            padding: 10px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0097a7;
+        }
+
+        .station-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .station-container input, .station-container select {
+            width: 200px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 600px;
+            margin-top: 20px;
+            background-color: #ddd;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 8000px;
+            padding: 20px;
+            background: #204060;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            color: #f9f9f9;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">Station Portal</div>
+        <a href="#">Home</a>
+        <a href="#">Map</a>
+        <a href="contact.html">Contact</a>
+        <a href="aboutus.html">About Us</a>
+    </div>
+
+    <!-- Direct Access Form -->
+    <div class="login-container">
+        <h2>Enter Your Mobile Number or Email</h2>
+        <form id="loginForm">
+            <input type="text" id="userInput" placeholder="Enter Mobile Number or Email" required>
+            <button type="submit">Access Map</button>
+        </form>
+    </div>
+
+    <!-- City Name and Railway Station Selection -->
+    <div class="station-container" id="stationSelection" style="display: none;">
+        <h3>Select City and Railway Station</h3>
+        <input type="text" id="cityName" placeholder="Enter City Name (e.g., Bhopal)" required>
+        <select id="stationSelect">
+            <option value="">Select Station</option>
+        </select>
+        <input type="text" id="pnr" placeholder="Optional: Enter PNR" style="margin-top: 10px;">
+        <button type="button" onclick="loadMap()">Show Map</button>
+    </div>
+
+    <!-- 3D Map Container (Initially Hidden) -->
+    <div id="mapContainer" class="map-container">
+        <h3>3D Railway Station Map</h3>
+        <div id="map"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Railway Station Navigation System. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('userInput').value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[6-9][0-9]{9}$/;
+
+            if (emailRegex.test(userInput) || phoneRegex.test(userInput)) {
+                document.querySelector('.login-container').style.display = 'none';
+                document.getElementById('stationSelection').style.display = 'block';
+                alert("Access granted! Now select your city and station.");
+            } else {
+                alert("Please enter a valid mobile number or email.");
+            }
+        });
+
+        document.getElementById('cityName').addEventListener('input', function() {
+            const cityName = this.value.trim().toLowerCase();
+            const stationSelect = document.getElementById('stationSelect');
+            stationSelect.innerHTML = '<option value="">Select Station</option>';
+
+            if (cityName === "bhopal") {
+                const stations = ["Bhopal Junction", "Sant Hirdaram Nagar", "Rani Kamla Pati"];
+                stations.forEach(station => {
+                    const option = document.createElement("option");
+                    option.value = station;
+                    option.textContent = station;
+                    stationSelect.appendChild(option);
+                });
+            }
+        });
+
+        function loadMap() {
+            const city = document.getElementById('cityName').value.trim();
+            const station = document.getElementById('stationSelect').value;
+            const pnr = document.getElementById('pnr').value.trim();
+
+            if (city && station) {
+                document.getElementById('stationSelection').style.display = 'none';
+                document.getElementById('mapContainer').style.display = 'block';
+
+                const mapDiv = document.getElementById('map');
+                mapDiv.innerHTML = ""; // Clear previous map
+                const map = new google.maps.Map(mapDiv, {
+                    center: { lat: 23.2599, lng: 77.4126 }, // Example: Bhopal coordinates
+                    zoom: 14
+                });
+                const marker = new google.maps.Marker({
+                    position: { lat: 23.2599, lng: 77.4126 },
+                    map,
+                    title: station
+                });
+            } else {
+                alert("Please select a city and station.");
+            }
+        }
+    </script>
+</body>
+</html>

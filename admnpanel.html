@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="admini.png">
+    <title>Admin Panel</title>
+    <!-- Link to external CSS -->
+     
+    <link rel="stylesheet" href="admnpanel.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showSection('routes')">Manage Routes</a></li>
+                <li><a href="#" onclick="showSection('trains')">Manage Trains</a></li>
+                <li><a href="#" onclick="showSection('users')">Manage Users</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="admin.html">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome, Admin</h1>
+                <p>Railway Station Navigation System</p>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section">
+                <h2>Dashboard</h2>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h3>Total Routes</h3>
+                        <p>45</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Trains</h3>
+                        <p>120</p>
+                    </div>
+                    <div class="card">
+                        <h3>Registered Users</h3>
+                        <p>3,210</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Routes Section -->
+            <section id="routes" class="section" style="display: none;">
+                <h2>Manage Routes</h2>
+                <p>Route management functionalities will be displayed here.</p>
+            </section>
+
+            <!-- Manage Trains Section -->
+            <section id="trains" class="section" style="display: none;">
+                <h2>Manage Trains</h2>
+                <p>Train management functionalities will be displayed here.</p>
+            </section>
+
+            <!-- Manage Users Section -->
+            <section id="users" class="section" style="display: none;">
+                <h2>Manage Users</h2>
+                <p>User management functionalities will be displayed here.</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="admnpanel.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Station Portal</title>
+    <!-- Link to external CSS -->
+    <link rel="icon" href="nav.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Station Portal</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#schedule">Train Schedule</a></li>
+            <li><a href="#facilities">Facilities</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <a href="masterlogin.html" style="color: white;">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Railway Station Navigation System</h1>
+            <p>Your gateway to seamless train travel. Find schedules, facilities, and station services easily.</p>
+            <a href="#schedule" class="btn">View Train Schedule</a>
+        </div>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" id="liveStationSearch" placeholder="Live Station">
+      <button id="liveStationButton">Search</button>
+  </div>
+
+    <!-- Train Schedule Section -->
+    <section class="schedule" id="schedule">
+        <h2>Train Schedule</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Train Name</th>
+                    <th>Arrival Time (Expected)</th>
+                    <th>Departure Time (Expected)</th>
+                    <th>Destination</th>
+                    <th>Platform</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12466</td>
+                    <td>10:00 AM</td>
+                    <td>10:10 AM</td>
+                    <td>Indore</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>01235</td>
+                    <td>11:15 AM</td>
+                    <td>11:20 AM</td>
+                    <td>Nagpur</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>22094</td>
+                    <td>12:00 PM</td>
+                    <td>12:15 PM</td>
+                    <td>Delhi</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                  <td>12854</td>
+                  <td>--Start--</td>
+                  <td>04:00 PM</td>
+                  <td>Jabalpur</td>
+                  <td>4</td>
+              </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities" id="facilities">
+        <h2>Station Facilities</h2>
+        <div class="facility-cards">
+            <div class="card">
+                <h3>Waiting Rooms</h3>
+                <p>Comfortable waiting areas for passengers.</p>
+            </div>
+            <div class="card">
+                <h3>Food Courts</h3>
+                <p>A variety of food and beverage options.</p>
+            </div>
+            <div class="card">
+                <h3>Wi-Fi Services</h3>
+                <p>Free high-speed internet access.</p>
+            </div>
+            <div class="card">
+                <h3>Parking</h3>
+                <p>Secure parking facilities for vehicles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact">
+        <h2>Contact Information</h2>
+        <p>Station Office: +91 94705 33075</p>
+        <p>Email: central.station@railway.com</p>
+        <p>Address: DRM Office, Habibganj</p>
+        <p>&copy; 2024 Railway Station Navigation System. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
